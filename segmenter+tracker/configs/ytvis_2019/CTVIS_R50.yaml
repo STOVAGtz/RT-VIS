@@ -1,0 +1,17 @@
+_BASE_: [ "../_base_/fastinst_R50_ppm-fpn_x1_576.yaml", "../_base_/YTVIS2019.yaml" ]
+MODEL:
+  META_ARCHITECTURE: "CTVISModel"
+  FASTINST:
+    #TRANSFORMER_DECODER_NAME: "CLMultiScaleMaskedTransformerDecoder"
+    TRANSFORMER_DECODER_NAME: "CLFastInstDecoder"
+    NUM_OBJECT_QUERIES: 100
+  TRACKER:
+    TRACKER_NAME: "SimpleTracker"
+    MEMORY_BANK:
+      EMBED_TYPE: "similarity_guided"
+    MATCH_SCORE_THR: 0.3
+  CL_PLUGIN:
+    CL_PLUGIN_NAME: "CTCLPlugin"
+    REID_WEIGHT: 2.
+    AUX_REID_WEIGHT: 3.
+    NUM_NEGATIVES: 99
